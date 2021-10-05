@@ -55,11 +55,15 @@ const WeatherCard: NextPage<Props> = ({ data, custom = 0, controls = false, clas
           <div className="flex justify-between items-center">
             <div className="space-y-2">
               <span className="flex space-x-2 items-center">
-                <WindIcon />
+                <abbr title="Wind Speed">
+                  <WindIcon />
+                </abbr>
                 <span>{data?.weather?.wind?.speed} m/s</span>
               </span>
               <span className="flex space-x-2 items-center">
-                <BsClouds style={{ width: '20', height: '20' }} />
+                <abbr title="Cloudiness">
+                  <BsClouds style={{ width: '20', height: '20' }} />
+                </abbr>
                 <span>{data?.weather?.clouds?.all}%</span>
               </span>
             </div>
