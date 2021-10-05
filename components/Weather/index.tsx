@@ -1,6 +1,6 @@
+import { useContext } from 'context/Main';
 import cityData from 'definitions/cityData';
 import { useAnimation } from 'framer-motion';
-import useLocalStorage from 'hooks/useLocalStorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import getCities from 'utils/getCities';
@@ -8,13 +8,13 @@ import getCities from 'utils/getCities';
 import DetailedWeatherCard from './libs/DetailedWeatherCard';
 import WeatherCard from './libs/WeatherCard';
 
-export const DEFAULT_CITIES = ['Toronto', 'New York', 'Los Angeles', 'Chicago', 'Phoenix', 'Beijing'];
+export const DEFAULT_CITIES = ['Toronto', 'New York', 'Los Angeles', 'Chicago', 'Phoenix'];
 
 const Weather: NextPage = () => {
   const controls = useAnimation();
+  const { currentCity, setCurrentCity } = useContext();
   const [cities, setCitites] = useState<cityData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [currentCity, setCurrentCity] = useLocalStorage('cityData', cities[0]);
 
   const initCityWeathers = async () => {
     const cityData = await getCities(DEFAULT_CITIES);

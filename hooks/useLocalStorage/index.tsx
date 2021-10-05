@@ -7,7 +7,7 @@ const useLocalStorage = (key: string, initialValue: any) => {
 
   const [value, setValue] = useState(() => {
     const jsonValue = typeof window !== 'undefined' ? localStorage.getItem(prefixedKey) : null;
-    if (jsonValue != null) {
+    if (jsonValue != null && jsonValue != 'undefined') {
       return JSON.parse(jsonValue);
     } else if (typeof initialValue === 'function') {
       return initialValue();
