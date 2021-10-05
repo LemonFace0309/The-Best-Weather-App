@@ -1,7 +1,23 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import 'styles/index.scss';
+
+import { ApolloProvider } from '@apollo/client';
+import Layout from 'components/Layout';
+import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'next-themes';
+
+import { useApollo } from '../apollo/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const apolloClient = useApollo(pageProps.initialApolloState);
+
+  return (
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </ApolloProvider>
+  );
 }
-export default MyApp
+export default MyApp;
