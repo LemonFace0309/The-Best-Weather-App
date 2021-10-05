@@ -8,8 +8,8 @@ const DetailedWeatherTable: NextPage<Props> = ({ classes, data }: Props) => {
     <table className={clsx('table-fixed w-5/6', classes)}>
       <thead>
         <tr>
-          <th className="w-9/12">Metric</th>
-          <th className="w-3/12">Value</th>
+          <th className="w-9/12 md:w-7/12">Metric</th>
+          <th className="w-3/12 md:w-5/12">Value</th>
         </tr>
       </thead>
       <tbody>
