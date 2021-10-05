@@ -9,7 +9,7 @@ const Footer: NextPage = () => {
           target="_blank"
           className="hover:opacity-80 transition-opacity"
           rel="noreferrer">
-          Crafted for Up Deck. Please hire me{' '}
+          Crafted for On Deck. Please hire me
           <span role="img" aria-label="heart-emoji">
             ❤️
           </span>
