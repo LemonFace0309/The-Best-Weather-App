@@ -2,8 +2,7 @@ import { useContext } from 'context/Main';
 import cityData from 'definitions/cityData';
 import { useAnimation } from 'framer-motion';
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import getCities from 'utils/getCities';
+import { useEffect } from 'react';
 
 import DetailedWeatherCard from './libs/DetailedWeatherCard';
 import WeatherCard from './libs/WeatherCard';
@@ -12,20 +11,7 @@ export const DEFAULT_CITIES = ['Toronto', 'New York', 'Los Angeles', 'Chicago', 
 
 const Weather: NextPage = () => {
   const controls = useAnimation();
-  const { currentCity, setCurrentCity } = useContext();
-  const [cities, setCitites] = useState<cityData[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const initCityWeathers = async () => {
-    const cityData = await getCities(DEFAULT_CITIES);
-    setCitites(cityData);
-    if (!currentCity) setCurrentCity(cityData[0]);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    initCityWeathers();
-  }, []);
+  const { currentCity, setCurrentCity, cities, loading } = useContext();
 
   useEffect(() => {
     if (!loading) {
@@ -47,7 +33,7 @@ const Weather: NextPage = () => {
           <DetailedWeatherCard classes="col-span-2 md:col-span-1" data={currentCity} />
           <div className="col-span-2 md:col-span-1 flex flex-wrap items-center justify-center">
             {cities.map((city: cityData, i) => (
-              <WeatherCard key={city?.name} data={city} custom={i} controls={controls} onClick={onSelectCard} />
+              <WeatherCard key={i} data={city} custom={i} controls={controls} onClick={onSelectCard} />
             ))}
           </div>
         </>
